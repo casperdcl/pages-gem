@@ -1,4 +1,6 @@
 DOCKER=docker
+DCC=docker-compose -f docker-compose.yml
+DCC+= -f docker-compose.alpine.yml
 
 TAG=gh-pages
 
@@ -33,3 +35,10 @@ server:
 
 .PHONY:
 	image image_alpine server shell
+
+build:
+	$(DCC) build $(TAG)
+run:
+	$(DCC) run --rm $(TAG)
+clean:
+	${DOCKER} images -q -f "dangling=true" | xargs -r docker rmi

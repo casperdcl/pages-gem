@@ -1,0 +1,10 @@
+version: '3.2'
+services:
+ gh-pages:
+  image: casperdcl/gh-pages:alpine
+  build:
+   context: .
+   dockerfile: Dockerfile.alpine
+   cache_from:
+    - ruby:alpine
+    - casperdcl/gh-pages:alpine

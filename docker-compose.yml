@@ -1,0 +1,26 @@
+version: '3.2'
+services:
+ gh-pages:
+  container_name: gh-pages
+  image: casperdcl/gh-pages:latest
+  build:
+   context: .
+   cache_from:
+    - ruby:2.4
+    - casperdcl/gh-pages:latest
+  environment:
+   LANG: en_GB.UTF-8
+   LANGUAGE: en_GB.UTF-8
+   LC_ALL: en_GB.UTF-8
+  stdin_open: true
+  tty: true
+  # cap_add:
+  #  - NET_ADMIN
+  # network_mode: "bridge"
+  volumes:
+   - .:/src/gh/pages-gem
+   - /home/cr45hin/gits/pet-mr.github.io:/src/site
+   #- /home/cr45hin/gits/leap-day:/src/site
+  ports:
+   - "4000:4000"
+  user: "1000:1000"
