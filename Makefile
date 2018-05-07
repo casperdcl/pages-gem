@@ -42,3 +42,5 @@ run:
 	$(DCC) run --rm $(TAG)
 clean:
 	${DOCKER} images -q -f "dangling=true" | xargs -r docker rmi
+inspect:
+	${DOCKER} inspect `docker ps -aq` | sed -rn 's/.*"IPAddress".*"(.*)".*/\1/p'
