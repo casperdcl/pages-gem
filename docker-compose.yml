@@ -19,8 +19,10 @@ services:
   # network_mode: "bridge"
   volumes:
    - .:/src/gh/pages-gem
-   - /home/cr45hin/gits/pet-mr.github.io:/src/site
-   #- /home/cr45hin/gits/leap-day:/src/site
+   #- $HOME/gits/leap-day:/src/site
+   #- $HOME/gits/github.io.pet-mr:/src/site
+   #- $HOME/gits/github.io.tqdm:/src/site
+   #- $HOME/gits/github.io.casperdcl:/src/site
   ports:
    - "4000:4000"
   user: "1000:1000"

@@ -16,6 +16,7 @@ gh-pages(){
     gh-pages
 }
 gh-pages-inspect(){
-  docker inspect $(docker ps -aq) \
-  | sed -rn 's/.*IPAddress".*"([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+).*/\1/p'
+  docker inspect -f \
+    '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' \
+    $(docker ps -aq)
 }

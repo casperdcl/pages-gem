@@ -43,4 +43,4 @@ run:
 clean:
 	${DOCKER} images -q -f "dangling=true" | xargs -r docker rmi
 inspect:
-	${DOCKER} inspect `docker ps -aq` | sed -rn 's/.*"IPAddress".*"(.*)".*/\1/p'
+	${DOCKER} inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' `docker ps -aq`
